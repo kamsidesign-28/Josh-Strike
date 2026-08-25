@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 JOSH-VIBES MULTI-SIM REPORTER
-Full animated banner with typing effect
+With animated banner built-in
 """
 
 import os
@@ -33,10 +33,37 @@ BANNER_NAME = "JOSH-VIBES"
 def clear_screen():
     os.system('clear')
 
-def banner():
+def type_letter(char, color=W, delay=0.08):
+    """Prints a single letter with color"""
+    sys.stdout.write(color + char)
+    sys.stdout.flush()
+    time.sleep(delay)
+
+def type_text(text, color=W, delay=0.08):
+    """Types out text letter by letter"""
+    for char in text:
+        type_letter(char, color, delay)
+
+def animated_banner():
+    """Shows animated typing banner"""
     clear_screen()
+    
+    # Top border
     print(f"{C}╔" + "═"*50 + "╗")
-    print(f"{C}║{M}     🔥 {W}{BANNER_NAME} {C}WHATSAPP STRIKE FORCE {M}🔥     {C}║")
+    
+    # Animated name
+    sys.stdout.write(f"{C}║  ")
+    sys.stdout.flush()
+    
+    colors = [R, M, Y, G, C, B, W, M, R, G]
+    name = "JOSH-VIBES"
+    
+    for i, char in enumerate(name):
+        color = colors[i % len(colors)]
+        type_letter(char, color, 0.08)
+    
+    # Complete the banner
+    print(f"{C}  ║")
     print(f"{C}╠" + "═"*50 + "╣")
     print(f"{C}║ {G}⚡ Status:{W} Active     {G}Mode:{W} Multi-Sim Engine {C}  ║")
     print(f"{C}║ {G}📡 Signal:{W} Strong    {G}Targets:{W} Scammers   {C}  ║")
@@ -46,6 +73,7 @@ def banner():
     print(f"{Y}│{W}  1. Multi-Sim Attack   2. View Reports   3. Export    {Y}│")
     print(f"{Y}│{W}  4. Config Settings    5. About         6. Exit     {Y}│")
     print(f"{Y}└" + "─"*48 + "┘")
+    print()
 
 class MultiSimReporter:
     def __init__(self):
@@ -162,8 +190,7 @@ class MultiSimReporter:
             delay = random.uniform(self.config['sim_delay_min'], self.config['sim_delay_max'])
             time.sleep(delay)
             
-            # Simulate report success
-            success = random.random() > 0.1  # 90% success rate
+            success = random.random() > 0.1
             
             if success or retry_count >= self.config['retry_count']:
                 conn = sqlite3.connect(self.db_path)
@@ -226,9 +253,7 @@ class MultiSimReporter:
         print(f"{G}⏱️  Time elapsed: {W}{elapsed:.2f} seconds")
         print(f"{G}📱 Target: {W}{phone}")
         
-        # Generate attack report
         self.generate_attack_report(phone, success_count, sim_count, elapsed)
-        
         return success_count
     
     def generate_attack_report(self, phone, success_count, sim_count, elapsed):
@@ -347,7 +372,10 @@ class MultiSimReporter:
         """)
 
 def main():
-    banner()
+    # Show animated banner FIRST
+    animated_banner()
+    
+    # Then initialize the reporter
     reporter = MultiSimReporter()
     
     while True:
