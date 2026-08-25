@@ -43,6 +43,3 @@ cd Josh-Strike
 
 # Run the tool
 python josh_multisim.py
-# Run the animated banner separately
-chmod +x display_banner.sh
-./display_banner.sh
