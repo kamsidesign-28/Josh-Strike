@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="https://img.shields.io/badge/Version-3.0.0-red?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python" />
+  <img src="https://img.shields.io/badge/Termux-Compatible-green?style=for-the-badge&logo=termux" />
+  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" />
+</p>
 <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Platform-Android-success?style=for-the-badge&logo=android" />
 <img src="https://img.shields.io/badge/Made%20with-Love-red?style=for-the-badge&logo=github" />
