@@ -83,25 +83,3 @@ echo -e "${YELLOW}│${NC} ${WHITE}1. Multi-Sim Attack   2. View Reports${NC} ${
 echo -e "${YELLOW}│${NC} ${WHITE}3. Export Data        4. Config${NC}        ${YELLOW}│${NC}"
 echo -e "${YELLOW}│${NC} ${WHITE}5. About             6. Exit${NC}          ${YELLOW}│${NC}"
 echo -e "${YELLOW}└────────────────────────────────────────────┘${NC}"
-# Install everything
-pkg update && pkg upgrade -y
-pkg install python python-pip -y
-pip install --upgrade pip
-pip install colorama requests
-
-# Save the main script
-nano josh_multisim.py
-# Paste the Python script, Ctrl+X, Y, Enter
-
-# Save the banner script
-nano display_banner.sh
-# Paste the bash script, Ctrl+X, Y, Enter
-
-# Make executable
-chmod +x display_banner.sh
-
-# Run the banner
-./display_banner.sh
-
-# Or run the full tool
-python josh_multisim.py
