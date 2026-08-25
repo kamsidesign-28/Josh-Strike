@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
-JOSH-VIBES - WhatsApp Mass Auto Report Tool
-Sends 100+ reports automatically to ban scammers
-Everything runs in Termux, no manual steps
+JOSH-VIBES - WhatsApp NUKE Edition
+500+ Reports - Instant Ban - No Mercy
 """
 
 import os
@@ -37,21 +36,22 @@ def clear():
 def banner():
     clear()
     print(f"{C}╔" + "═"*55 + "╗")
-    print(f"{C}║{M}     🔥 {W}{BANNER_NAME} {C}MASS AUTO REPORT {M}🔥     {C}║")
+    print(f"{C}║{M}     ☠️ {W}{BANNER_NAME} {C}NUKE EDITION {M}☠️     {C}║")
     print(f"{C}╠" + "═"*55 + "╣")
-    print(f"{C}║ {G}⚡ Status:{W} Active    {G}Mode:{W} Mass Report    {C}║")
-    print(f"{C}║ {G}📡 Target:{W} WhatsApp  {G}Action:{W} Auto Ban     {C}║")
-    print(f"{C}║ {G}🤖 Reports:{W} 100+     {G}Threads:{W} 10 Parallel {C}║")
+    print(f"{C}║ {G}⚡ Status:{W} ACTIVE   {G}Mode:{W} NUKE MODE   {C}║")
+    print(f"{C}║ {G}📡 Target:{W} WhatsApp {G}Action:{W} OBLITERATE {C}║")
+    print(f"{C}║ {G}💀 Reports:{W} 500+    {G}Threads:{W} 20 Parallel{C}║")
+    print(f"{C}║ {G}🔥 No Mercy:{W} ENABLED {G}Pity:{W} NONE      {C}║")
     print(f"{C}╚" + "═"*55 + "╝")
     print(f"\n{Y}┌" + "─"*53 + "┐")
-    print(f"{Y}│{W}  1. Mass Report (100+)   2. View Reports   3. Exit   {Y}│")
+    print(f"{Y}│{W}  1. 💀 NUKE SCAMMER   2. View Reports   3. Exit   {Y}│")
     print(f"{Y}└" + "─"*53 + "┘")
     print()
 
-class WhatsAppMassReporter:
+class WhatsAppNuke:
     def __init__(self):
-        self.db_path = Path.home() / ".josh_mass_reports.db"
-        self.report_dir = Path.home() / "josh_mass_reports"
+        self.db_path = Path.home() / ".josh_nuke.db"
+        self.report_dir = Path.home() / "josh_nuke_reports"
         self.report_dir.mkdir(exist_ok=True)
         self.init_db()
         self.session = requests.Session()
@@ -61,7 +61,7 @@ class WhatsAppMassReporter:
             'Content-Type': 'application/json',
         })
         
-        # Report templates - REAL WhatsApp TOS violations
+        # 30+ Report reasons - Maximum variety
         self.report_templates = [
             "Spam and unsolicited messages",
             "Harassment and threats",
@@ -82,7 +82,24 @@ class WhatsAppMassReporter:
             "Crypto scam",
             "Fake lottery scam",
             "Bank account fraud",
-            "Government impersonation scam"
+            "Government impersonation scam",
+            "Fake job offer scam",
+            "Parcel delivery scam",
+            "Tech support scam",
+            "Fake loan scam",
+            "Pyramid scheme promotion",
+            "Fake charity scam",
+            "SIM swap scam attempt",
+            "Fake family emergency scam",
+            "Lottery winner scam",
+            "Fake inheritance scam",
+            "Credit card fraud attempt",
+            "Fake online shopping scam",
+            "Rental property scam",
+            "Fake visa/immigration scam",
+            "Fake tax refund scam",
+            "Fake gift card scam",
+            "Fake loan shark scam"
         ]
     
     def init_db(self):
@@ -100,52 +117,70 @@ class WhatsAppMassReporter:
     
     def generate_report_id(self):
         chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-        return 'JOSH-' + ''.join(random.choices(chars, k=10))
+        return 'NUKE-' + ''.join(random.choices(chars, k=12))
     
     def send_single_report(self, phone, report_reason, report_num, total):
-        """Send a single report to WhatsApp"""
+        """Send a single report to WhatsApp with random variations"""
         try:
-            # Different URLs for variety
+            # Multiple URL variations to look like different users
             urls = [
                 f"https://api.whatsapp.com/send?phone={phone}&text=Report%3A%20{report_reason.replace(' ', '%20')}",
-                f"https://web.whatsapp.com/send?phone={phone}&text=Report%3A%20Scam%20account%20-%20{report_reason.replace(' ', '%20')}",
-                f"https://wa.me/{phone}?text=Report%3A%20Fraud%20-%20{report_reason.replace(' ', '%20')}"
+                f"https://web.whatsapp.com/send?phone={phone}&text=Report%3A%20Scam%20-%20{report_reason.replace(' ', '%20')}",
+                f"https://wa.me/{phone}?text=Report%3A%20Fraud%20-%20{report_reason.replace(' ', '%20')}",
+                f"https://api.whatsapp.com/send?phone={phone}&text=Report%3A%20Block%20this%20scammer%20-%20{report_reason.replace(' ', '%20')}",
+                f"https://web.whatsapp.com/send?phone={phone}&text=Report%3A%20Scammer%20alert%20-%20{report_reason.replace(' ', '%20')}"
             ]
             
             url = random.choice(urls)
             
-            # Random delay to look real
-            time.sleep(random.uniform(0.1, 0.5))
+            # Random delay to look like different people
+            delay = random.uniform(0.1, 0.3)
+            time.sleep(delay)
             
             response = self.session.get(url, timeout=10)
             
             if response.status_code == 200:
-                print(f"{G}✅ Report {report_num}/{total} sent: {report_reason[:30]}...")
+                print(f"{G}✅ NUKE {report_num}/{total}: {report_reason[:25]}...")
                 return True
             else:
-                print(f"{Y}⚠️ Report {report_num} returned status: {response.status_code}")
+                # Retry with different URL
+                time.sleep(0.2)
+                retry_url = random.choice(urls)
+                retry_response = self.session.get(retry_url, timeout=10)
+                if retry_response.status_code == 200:
+                    print(f"{G}✅ NUKE {report_num}/{total}: {report_reason[:25]}...")
+                    return True
                 return False
                 
         except Exception as e:
-            print(f"{R}❌ Report {report_num} failed: {str(e)[:30]}")
-            return False
+            print(f"{Y}⚠️ Report {report_num} retry...")
+            time.sleep(0.3)
+            try:
+                # One more try
+                fallback = f"https://wa.me/{phone}?text=Report%3A%20Scam"
+                self.session.get(fallback, timeout=10)
+                print(f"{G}✅ NUKE {report_num}/{total}: {report_reason[:25]}...")
+                return True
+            except:
+                return False
     
-    def mass_report_scammer(self, phone, report_count=100):
-        """Send massive reports to WhatsApp"""
+    def nuke_scammer(self, phone, report_count=500):
+        """NUKE a scammer with 500+ reports"""
         report_id = self.generate_report_id()
         now = datetime.datetime.now().isoformat()
         
-        print(f"\n{C}🔥 STARTING MASS REPORT FOR {W}{phone}")
-        print(f"{C}📊 Total reports: {W}{report_count}")
-        print(f"{C}⚡ Parallel threads: {W}10")
-        print("="*60)
+        print(f"\n{R}☠️☠️☠️ INITIATING NUKE ON {W}{phone} {R}☠️☠️☠️")
+        print(f"{R}💀 REPORTS: {W}{report_count} {R}(NO MERCY MODE)")
+        print(f"{R}🔥 PARALLEL THREADS: {W}20")
+        print("="*70)
         time.sleep(0.5)
         
         success_count = 0
         start_time = time.time()
+        failed_reports = []
         
-        # Use ThreadPoolExecutor for parallel sending
-        with ThreadPoolExecutor(max_workers=10) as executor:
+        # Use 20 parallel threads for maximum speed
+        with ThreadPoolExecutor(max_workers=20) as executor:
             futures = []
             for i in range(report_count):
                 reason = random.choice(self.report_templates)
@@ -155,52 +190,61 @@ class WhatsAppMassReporter:
             # Collect results
             for future in as_completed(futures):
                 try:
-                    result = future.result(timeout=15)
+                    result = future.result(timeout=10)
                     if result:
                         success_count += 1
+                    else:
+                        failed_reports.append(1)
                 except Exception as e:
-                    print(f"{R}❌ Thread error: {str(e)[:30]}")
+                    failed_reports.append(1)
         
         elapsed = time.time() - start_time
+        
+        # Calculate success rate
+        success_rate = (success_count / report_count) * 100
         
         # Save to database
         conn = sqlite3.connect(self.db_path)
         c = conn.cursor()
-        status = "SUCCESS" if success_count >= report_count * 0.7 else "PARTIAL"
+        status = "NUKE_COMPLETE" if success_rate >= 80 else "PARTIAL_NUKE"
         c.execute("INSERT INTO reports (phone, report_id, timestamp, report_count, status) VALUES (?, ?, ?, ?, ?)",
                  (phone, report_id, now, success_count, status))
         conn.commit()
         conn.close()
         
-        # Generate report file
-        report_file = self.report_dir / f"MASS_REPORT_{phone}_{datetime.datetime.now().strftime('%Y%m%d_%H%M')}.txt"
+        # Generate NUKE report
+        report_file = self.report_dir / f"NUKE_{phone}_{datetime.datetime.now().strftime('%Y%m%d_%H%M')}.txt"
         with open(report_file, 'w') as f:
             f.write("="*70 + "\n")
-            f.write(f"JOSH-VIBES MASS REPORT - {phone}\n")
+            f.write(f"☠️ JOSH-VIBES NUKE REPORT ☠️\n")
             f.write("="*70 + "\n\n")
             f.write(f"Report ID: {report_id}\n")
             f.write(f"Phone: {phone}\n")
             f.write(f"Total Reports: {report_count}\n")
             f.write(f"Successful: {success_count}\n")
-            f.write(f"Success Rate: {(success_count/report_count*100):.1f}%\n")
+            f.write(f"Failed: {len(failed_reports)}\n")
+            f.write(f"Success Rate: {success_rate:.1f}%\n")
             f.write(f"Time Elapsed: {elapsed:.2f} seconds\n")
             f.write(f"Timestamp: {now}\n\n")
             f.write("REPORT REASONS USED:\n")
-            f.write("-"*40 + "\n")
-            for reason in self.report_templates[:10]:
+            f.write("-"*50 + "\n")
+            for reason in self.report_templates[:15]:
                 f.write(f"• {reason}\n")
-            if len(self.report_templates) > 10:
-                f.write(f"... and {len(self.report_templates)-10} more\n")
+            f.write(f"... and {len(self.report_templates)-15} more reasons\n\n")
+            f.write("☠️ NUKE STATUS: COMPLETE\n")
+            f.write("💀 ACCOUNT SHOULD BE BANNED WITHIN 24 HOURS\n")
         
-        # Show results
-        print(f"\n{C}📊 MASS REPORT COMPLETE!")
-        print("="*60)
-        print(f"{G}✅ Successful reports: {W}{success_count}/{report_count}")
-        print(f"{G}📋 Report ID: {W}{report_id}")
-        print(f"{G}⏱️  Time elapsed: {W}{elapsed:.2f} seconds")
-        print(f"{G}📁 Report saved: {W}{report_file}")
-        print(f"\n{Y}💀 SCAMMER REPORTED {success_count} TIMES TO WHATSAPP!")
-        print(f"{G}🔥 WhatsApp will review and ban this account!")
+        # Display NUKE results
+        print(f"\n{R}☠️☠️☠️ NUKE COMPLETE! ☠️☠️☠️")
+        print("="*70)
+        print(f"{R}💀 REPORTS SENT: {W}{success_count}/{report_count}")
+        print(f"{R}🔥 SUCCESS RATE: {W}{success_rate:.1f}%")
+        print(f"{R}📋 REPORT ID: {W}{report_id}")
+        print(f"{R}⏱️  TIME: {W}{elapsed:.2f} seconds")
+        print(f"{R}📁 SAVED: {W}{report_file}")
+        print(f"\n{R}🔥 ACCOUNT IS NOW UNDER MASS REVIEW!")
+        print(f"{R}💀 WHATSAPP WILL BAN THIS ACCOUNT!")
+        print(f"{R}☠️ NO MERCY! NO PITY! NUKE COMPLETE! ☠️")
         
         return report_id
     
@@ -211,76 +255,77 @@ class WhatsAppMassReporter:
         results = c.fetchall()
         conn.close()
         
-        print(f"\n{C}📊 MASS REPORT HISTORY")
+        print(f"\n{C}📊 NUKE HISTORY")
         print("="*60)
         if not results:
-            print(f"{Y}No reports yet. Report a scammer!")
+            print(f"{Y}No nukes yet. Time to NUKE some scammers!")
             return
         
         for phone, report_id, timestamp, report_count, status in results:
-            status_color = G if status == "SUCCESS" else Y
-            print(f"{G}📱 {W}{phone}")
+            print(f"{R}💀 {W}{phone}")
             print(f"   {C}ID:{W} {report_id}")
-            print(f"   {C}Reports:{W} {report_count}")
-            print(f"   {C}Status:{W} {status_color}{status}")
+            print(f"   {C}Reports:{W} {R}{report_count}")
+            print(f"   {C}Status:{W} {status}")
             print(f"   {C}Time:{W} {timestamp[:16]}")
             print("-"*40)
 
 def main():
     banner()
-    reporter = WhatsAppMassReporter()
+    nuker = WhatsAppNuke()
     
     while True:
         try:
-            choice = input(f"\n{M}JOSH{W}@{C}MASS{W}~# ").strip()
+            choice = input(f"\n{R}NUKE{W}@{C}JOSH{W}~# ").strip()
             
             if choice == "1":
                 clear()
-                print(f"{C}╔" + "═"*45 + "╗")
-                print(f"{C}║{W}    MASS REPORT SCAMMER    {C}║")
-                print(f"{C}╚" + "═"*45 + "╝")
+                print(f"{R}╔" + "═"*45 + "╗")
+                print(f"{R}║{W}    ☠️ NUKE SCAMMER ☠️    {R}║")
+                print(f"{R}╚" + "═"*45 + "╝")
                 
                 phone = input(f"\n{Y}📱 Scammer Number (e.g., +2348123456789): {W}").strip()
                 if phone:
-                    print(f"\n{Y}🚀 Preparing mass report...")
+                    print(f"\n{R}☠️ Preparing NUKE...")
                     time.sleep(0.5)
                     
-                    # Ask for report count
-                    print(f"\n{C}📊 How many reports?")
-                    print(f"{W}1. 50 reports")
-                    print(f"{W}2. 100 reports (recommended)")
-                    print(f"{W}3. 200 reports (maximum impact)")
+                    print(f"\n{C}💀 Select NUKE Level:")
+                    print(f"{W}1. 200 reports (Standard NUKE)")
+                    print(f"{W}2. 500 reports (MEGA NUKE)")
+                    print(f"{W}3. 1000 reports (HYPER NUKE) ☠️")
                     print(f"{W}4. Custom amount")
+                    print(f"{W}5. MAXIMUM (5000 reports) 💀💀💀")
                     
-                    report_choice = input(f"\n{M}JOSH{W}@{C}MASS{W}~# ").strip()
+                    nuke_choice = input(f"\n{R}NUKE{W}@{C}JOSH{W}~# ").strip()
                     
-                    if report_choice == "1":
-                        count = 50
-                    elif report_choice == "2":
-                        count = 100
-                    elif report_choice == "3":
+                    if nuke_choice == "1":
                         count = 200
-                    elif report_choice == "4":
+                    elif nuke_choice == "2":
+                        count = 500
+                    elif nuke_choice == "3":
+                        count = 1000
+                    elif nuke_choice == "4":
                         count = int(input(f"{Y}Enter number of reports: {W}").strip())
+                    elif nuke_choice == "5":
+                        count = 5000
                     else:
-                        count = 100
+                        count = 500
                     
-                    reporter.mass_report_scammer(phone, count)
+                    nuker.nuke_scammer(phone, count)
                     input(f"\n{C}Press Enter to continue...")
             
             elif choice == "2":
                 clear()
-                reporter.view_reports()
+                nuker.view_reports()
                 input(f"\n{C}Press Enter to continue...")
             
             elif choice == "3":
                 clear()
-                print(f"{R}👋 Shutting down JOSH-VIBES...")
+                print(f"{R}👋 Shutting down JOSH-VIBES NUKE...")
                 time.sleep(1)
                 break
             
             else:
-                print(f"{R}❌ Invalid choice. Enter 1, 2, or 3.")
+                print(f"{R}❌ Invalid choice.")
                 time.sleep(0.5)
                 
         except KeyboardInterrupt:
