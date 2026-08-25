@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 JOSH-VIBES MULTI-SIM REPORTER
-With animated banner built-in
+Termux-optimized with animated banner
 """
 
 import os
@@ -31,27 +31,24 @@ B = Fore.BLUE + Style.BRIGHT
 BANNER_NAME = "JOSH-VIBES"
 
 def clear_screen():
-    os.system('clear')
+    print("\033c", end="")
+    sys.stdout.flush()
+    time.sleep(0.05)
 
 def type_letter(char, color=W, delay=0.08):
-    """Prints a single letter with color"""
     sys.stdout.write(color + char)
     sys.stdout.flush()
     time.sleep(delay)
 
 def type_text(text, color=W, delay=0.08):
-    """Types out text letter by letter"""
     for char in text:
         type_letter(char, color, delay)
 
 def animated_banner():
-    """Shows animated typing banner"""
     clear_screen()
     
-    # Top border
     print(f"{C}╔" + "═"*50 + "╗")
     
-    # Animated name
     sys.stdout.write(f"{C}║  ")
     sys.stdout.flush()
     
@@ -62,7 +59,6 @@ def animated_banner():
         color = colors[i % len(colors)]
         type_letter(char, color, 0.08)
     
-    # Complete the banner
     print(f"{C}  ║")
     print(f"{C}╠" + "═"*50 + "╣")
     print(f"{C}║ {G}⚡ Status:{W} Active     {G}Mode:{W} Multi-Sim Engine {C}  ║")
@@ -372,10 +368,7 @@ class MultiSimReporter:
         """)
 
 def main():
-    # Show animated banner FIRST
     animated_banner()
-    
-    # Then initialize the reporter
     reporter = MultiSimReporter()
     
     while True:
